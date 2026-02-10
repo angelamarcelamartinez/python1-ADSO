@@ -1,0 +1,61 @@
+def mostrar_menu(animales):
+    print("\n=== ZOOLÓGICO RASEC ===")
+    print("1.", animales[1]["nombre"], "- $", animales[1]["precio"], "por persona")
+    print("2.", animales[2]["nombre"], "- $", animales[2]["precio"], "por persona")
+    print("3.", animales[3]["nombre"], "- $", animales[3]["precio"], "por persona")
+    print("4.", animales[4]["nombre"], "- $", animales[4]["precio"], "por persona")
+    print("0. Finalizar compra")
+    
+def main():
+    animales = {
+        1: {"nombre": "León", "precio": 15000},
+        2: {"nombre": "Tigre", "precio": 18000},
+        3: {"nombre": "Elefante", "precio": 12000},
+        4: {"nombre": "Jirafa", "precio": 10000}
+    }
+
+    visitas = {}
+    total = 0
+
+    while True:
+        personas=(input("Ingrese la cantidad de personas: ").strip())
+
+        if not personas.isdigit():
+            print("Error: debe ingresar solo números.")
+            continue
+        personas = int(personas)
+        if personas <= 0:
+            print("La cantidad de personas debe ser mayor a cero.")
+            continue
+        break
+
+    while True:
+        mostrar_menu(animales)
+        opcion= int(input("Seleccione el animal que desea visitar: ").strip())
+
+        if opcion == 0:
+            break
+
+        if opcion in animales:
+            animal = animales[opcion]
+            costo = animal["precio"] * personas
+            total =total+ costo
+            visitas[animal["nombre"]] = animal["precio"]
+            print("Agregado:", animal["nombre"])
+        else:
+            print("Opción inválida.")
+
+    print("\n=== RESUMEN DE LA VISITA ===")
+    print("Cantidad de personas:", personas)
+
+    if visitas:
+        print("\nAnimales que vas a visitar:")
+        for nombre, precio in visitas.items():
+            print("-", nombre, ": $", precio, "por persona")
+    else:
+        print("No seleccionaste ningún animal.")
+
+    print("\nTOTAL A PAGAR: $", total,"por",personas,"personas")
+
+if __name__ == "__main__":
+    main()

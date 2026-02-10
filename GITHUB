@@ -1,0 +1,15 @@
+ACTUALIZAR REPOSITORY
+
+git status
+git add .
+git commit -m "sexto commit"
+git push origin main
+
+SUBIR REPOSITORY
+
+git init
+git add .
+git commit -m "Primer commit"
+git branch -M main
+git remote add origin https://github.com/angelamarcelamartinez/python1-ADSO.git
+git push -u origin main
