@@ -6,6 +6,12 @@ def mostrar_menu(animales):
     print("4.", animales[4]["nombre"], "- $", animales[4]["precio"], "por persona")
     print("0. Finalizar compra")
     
+def metodo_pago():
+    print("\n=== FORMAS DE PAGO ===") 
+    print("1. Efectivo") 
+    print("2. Tarjeta débito") 
+    print("3. Tarjeta crédito")
+
 def main():
     animales = {
         1: {"nombre": "León", "precio": 15000},
@@ -18,12 +24,14 @@ def main():
     total = 0
 
     while True:
-        personas=(input("Ingrese la cantidad de personas: ").strip())
+        personas=(input("Ingrese la cantidad de personas: ").strip()) 
 
         if not personas.isdigit():
             print("Error: debe ingresar solo números.")
             continue
+
         personas = int(personas)
+
         if personas <= 0:
             print("La cantidad de personas debe ser mayor a cero.")
             continue
@@ -31,6 +39,7 @@ def main():
 
     while True:
         mostrar_menu(animales)
+
         opcion= int(input("Seleccione el animal que desea visitar: ").strip())
 
         if opcion == 0:
@@ -39,7 +48,7 @@ def main():
         if opcion in animales:
             animal = animales[opcion]
             costo = animal["precio"] * personas
-            total =total+ costo
+            total += costo
             visitas[animal["nombre"]] = animal["precio"]
             print("Agregado:", animal["nombre"])
         else:
@@ -57,5 +66,49 @@ def main():
 
     print("\nTOTAL A PAGAR: $", total,"por",personas,"personas")
 
+    while True:
+        metodo_pago()
+        metodo = input("Ingrese método de pago: ")
+
+        if metodo == "1":
+            try:
+                monto = int(input("Ingrese monto con el que cancela: "))
+            except ValueError:
+                print("Monto inválido.")
+                continue
+
+            if monto < total:
+                print("Monto insuficiente, vuelva a intentar.")
+            else:
+                cambio = monto - total
+                print("Pago exitoso.")
+                print("Devueltas: $", cambio)
+                print("Gracias por visitar el zoológico Rasec")
+                break
+        elif metodo == "2":
+            pin = input("Ingrese PIN de la tarjeta débito: ")
+            if pin.isdigit() and len(pin) == 4:
+                print("Pago exitoso.")
+                print("Gracias por visitar el zoológico Rasec")
+                break
+            else:
+                print("PIN inválido, vuelva a intentar.")
+
+        elif metodo == "3":
+            pin = input("Ingrese PIN de la tarjeta crédito: ")
+
+            if pin.isdigit() and len(pin) == 4:
+                cuotas = input("Ingrese a cuántas cuotas desea: ")
+                if cuotas.isdigit():
+                    print("Pago exitoso a", cuotas, "cuotas.")
+                    print("Gracias por visitar el zoológico Rasec")
+                    break
+                else:
+                    print("Número de cuotas inválido.")
+            else:
+                print("PIN inválido, vuelva a intentar.")
+
+        else:
+            print("Método de pago inválido.")
 if __name__ == "__main__":
     main()

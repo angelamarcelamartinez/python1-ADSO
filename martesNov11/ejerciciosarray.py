@@ -1,0 +1,23 @@
+datos1 = []
+datos2 = []
+doc = str(input("Ingrese su numero de documento:_"))
+datos1.append(doc)
+nom = str(input("Ingrese su nombre:_"))
+datos1.append(nom)
+tel = str(input("Ingrese su telefono:_"))
+datos1.append(tel)
+edad = int(input("Ingrese su edad:_"))
+datos1.append(edad)
+peso = int(input("Ingrese su peso:_"))
+datos2.append(peso)
+direc = str(input("Ingrese su direccion:_"))
+datos2.append(direc)
+gen = str(input("Ingrese su genero:_"))
+datos2.append(gen)
+lista3 = datos1 + datos2
+print(len(lista3))
+print(lista3[3]) 
+lista3.pop(4)
+email = str(input("Ingrese el email:_"))
+lista3.append(email) 
+print(lista3)
